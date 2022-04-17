@@ -25,11 +25,14 @@ let circleTurn;
 
 startGame();
 
-restartBtn.addEventListener("click", startGame());
+restartBtn.addEventListener("click", startGame);
 
 function startGame() {
   circleTurn = false;
   cells.forEach((cell) => {
+    cell.classList.remove(X_CLASS);
+    cell.classList.remove(CIRCLE_CLASS);
+    cell.removeEventListener("click", handleClick);
     cell.addEventListener("click", handleClick, { once: true });
   });
   setBoardHoverClass();
@@ -52,7 +55,6 @@ function handleClick(e) {
 }
 
 // functions called by handleClick
-
 function endGame(draw) {
   if (draw) {
     winningMessageTextElement.innerText = "Draw!";
