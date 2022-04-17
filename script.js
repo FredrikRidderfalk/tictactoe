@@ -21,22 +21,24 @@ const winningMessageTextElement = document.querySelector(
   "[data-winning-message-text]"
 );
 
+// for tracking whose turn it is
 let circleTurn;
 
+// we starting/restarting the game!
 startGame();
 
 restartBtn.addEventListener("click", startGame);
 
 function startGame() {
-  circleTurn = false;
+  circleTurn = false; // set who goes first
   cells.forEach((cell) => {
-    cell.classList.remove(X_CLASS);
-    cell.classList.remove(CIRCLE_CLASS);
-    cell.removeEventListener("click", handleClick);
-    cell.addEventListener("click", handleClick, { once: true });
+    cell.classList.remove(X_CLASS); // for restarting the game
+    cell.classList.remove(CIRCLE_CLASS); // for restarting the game
+    cell.removeEventListener("click", handleClick); // for restarting the game
+    cell.addEventListener("click", handleClick, { once: true }); // add an eventListener to each cell
   });
-  setBoardHoverClass();
-  winningMessage.classList.remove("show");
+  setBoardHoverClass(); // this is also called in handleClick for every click in a cell
+  winningMessage.classList.remove("show"); // for restarting the game
 }
 
 // handleClick
